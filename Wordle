@@ -23,7 +23,8 @@ stack = [
                                       ]
 for line in stack:
     print(*line)
-
+  
+print('= : correct, / : wrong position, ! : not included')
 
 
 for ind, item in enumerate(stack):
