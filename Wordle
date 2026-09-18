@@ -1,6 +1,6 @@
 word = 'wordle'
 lw = list(word)
-
+end = False
 stack = [
           [[],[],[],[],[]],
           [[],[],[],[],[]],
@@ -11,7 +11,28 @@ stack = [
                             ]
 
 
+i = 0
+while not end:
+  ans = list(input.strip())
+  
+  for item in stack[0]:
+    if ans[0] == stack[0][0]:
+      stack[0][0] += 
+
+  
+  if i = 6:
+    end = True
+    print("Nice try bozo.")
+  
+  
+  
+
+
 
 
 for line in stack:
   print(*line)
+
+
+
+  
