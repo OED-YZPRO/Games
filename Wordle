@@ -1,45 +1,47 @@
-word = 'wordle'
+import random
+word_list = [
+             nigga, arata, ayden, ninja, viles, 
+             vital, monks, beast, myths, cynic, 
+             shits, burns, dalif, nikes, zhong,
+             trump, putin, games, trash, bozos,
+             hello, trace, grace, crush, death,
+             lives, cruel, delta, crypt, lymph,
+             lynch, bunch, shyly, pound, tiers
+                                                ]
+
 cword = list(word)
-end = False
 stack = [
-          [[],[],[],[],[]],
-          [[],[],[],[],[]],
-          [[],[],[],[],[]],
-          [[],[],[],[],[]],
-          [[],[],[],[],[]],
-          [[],[],[],[],[]] 
-                            ]
+          ['_', '_', '_', '_', '_',],
+          ['_', '_', '_', '_', '_',], 
+          ['_', '_', '_', '_', '_',],
+          ['_', '_', '_', '_', '_',],
+          ['_', '_', '_', '_', '_',],
+          ['_', '_', '_', '_', '_',] 
+                                      ]
 for line in stack:
     print(*line)
 
-i = 0
-while not end:
-  for item in stack:
+for ind, item in enumerate(stack):
     ans = list(input().strip())
-    
-    for letter in item:
+      
+    for i, letter in enumerate(item):
+      
       if ans[i] == cword[i]:
-        letter = ans[i] + '/'
+        stack[ind][i] = ans[i] + '/'
       elif ans[i] in cword:
-        letter = ans[i] + '|'
+        stack[ind][i] = ans[i] + '|'
       else:
-        letter = ans[i] + '!'
-      i += 1
-    i = 0
-    if item == cword:
+        stack[ind][i] = ans[i] + '!'
+      
+    if ans == cword:
       for line in stack:
         print(*line)
       print("Lucky guy.")
       exit()
+      
     for line in stack:
       print(*line)
-      
 
-  if i == 6:
-    end = True
-    print("Nice try bozo.")
-  
-
-
-
+print("Nice try bozo.")
+exit()
   
