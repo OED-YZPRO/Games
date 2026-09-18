@@ -1,5 +1,5 @@
 word = 'wordle'
-lw = list(word)
+cword = list(word)
 end = False
 stack = [
           [[],[],[],[],[]],
@@ -9,29 +9,36 @@ stack = [
           [[],[],[],[],[]],
           [[],[],[],[],[]] 
                             ]
-
+for line in stack:
+    print(*line)
 
 i = 0
 while not end:
-  ans = list(input.strip())
-  
-  for item in stack[0]:
-    if ans[0] == stack[0][0]:
-      stack[0][0] += 
+  for item in stack:
+    ans = list(input().strip())
+    
+    for letter in item:
+      if ans[i] == cword[i]:
+        letter = ans[i] + '/'
+      elif ans[i] in cword:
+        letter = ans[i] + '|'
+      else:
+        letter = ans[i] + '!'
+      i += 1
+    i = 0
+    if item == cword:
+      for line in stack:
+        print(*line)
+      print("Lucky guy.")
+      exit()
+    for line in stack:
+      print(*line)
+      
 
-  
-  if i = 6:
+  if i == 6:
     end = True
     print("Nice try bozo.")
   
-  
-  
-
-
-
-
-for line in stack:
-  print(*line)
 
 
 
