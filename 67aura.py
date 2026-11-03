@@ -19,65 +19,52 @@ class user:
 player1 = user(name)
 
 
-uncommon = 0
-rare = 0
-epic = 0
-legendary = 0
-mythical = 0
+auras = {
+  'uncommon': 0,
+  'rare': 0,
+  'epic': 0,
+  'legendary': 0,
+  'mythical': 0
+}
 
-auras = []
+rarities = ['uncommon', 'rare', 'epic', 'legendary', 'mythical']
 
 def roll():
-    global uncommon
-    global rare
-    global epic
-    global legendary
-    global mythical
-    
+    global auras
     print("You rolled an aura")
     chance = random.randint(player1.luck, 100)
     if chance <= 50:
         print(f"You got an uncommon aura.")
-        uncommon += 1
+        auras['uncommon'] += 1
     elif chance in range(51, 81): 
         print(f"You got an rare aura.")
-        rare += 1
+        auras['rare'] += 1
     elif chance in range(81, 91):
         print(f"You got an epic aura.")
-        epic += 1
+        auras['epic'] += 1
     elif chance in range(91, 95):
         print(f"You got an legendary aura.")
-        legendary += 1
+        auras['legendary'] += 1
     elif chance == 100:
         print(f"You got an mythical aura.")
-        mythical += 1
+        auras['mythical'] += 1
     else:
         print("You got nothing lol")
         
     
 def inventory():
-    global auras
-    auras = [f'uncommon - {uncommon}', f'rare - {rare}', 
-         f'epic - {epic}', f'legendary - {legendary}',
-         f'mythical - {mythical}']
          
-    print("Your auras: \n")
-    print(auras)
+    print("-----Your auras----- \n")
+    for aura, amount in auras.item():
+      print(f'{aura}, {amount}')
     
 def shop():
     global start
     global auras
-    global uncommon
-    global rare
-    global epic
-    global legendary
-    global mythical
-    auras = [f'uncommon - {uncommon}', f'rare - {rare}', 
-         f'epic - {epic}', f'legendary - {legendary}',
-         f'mythical - {mythical}']
-    
+    global rarities
     do = ''
     while do != '3':
+        print('-----The Sigma Shop-----')
         do = input('What do you want to do? \n 1 - buy potions \n 2 - sell auras \n 3 - exit the shop \n')
         if do == "1":
             if player1.money >= 50:
@@ -87,8 +74,8 @@ def shop():
                 print("You don't have enough money \n")
         elif do == "2":
             print(auras)
-            sold = input('\nWhat aura are you going to sell?\n')
-            if sold != '':
+            sold = input('\nWhich aura are you going to sell?\n')
+            if sold in rarities:
                 quantity = int(input('\nHow many?\n'))
                 if quantity > sold or sold == 0:
                     print("You don't have that many auras.")
@@ -121,13 +108,13 @@ def main():
     global start
     
     while start == "1":
-        inp = input("\nActions: \n 1 - Roll an aura                                                 \n 2 - Check inventory \n 3 - Check stats \n 4 - Shop                          \n 5 - drink a potion \n 6 - Exit \n")
+        inp = input("\n-----Actions----- \n 1 - Roll an aura \n 2 - Check inventory \n 3 - Check stats \n 4 - Shop \n 5 - drink a potion \n 6 - Exit \n")
         if inp == "1":
             roll()
         elif inp == "2":
             inventory()
         elif inp == "3":
-            stats = (f"User's Stats \n Name: {player1.name} \n Luck: {player1.luck} \n Money: {player1.money} \n Luck Potions: {player1.potions}")
+            stats = (f"-----User's Stats----- \n Name: {player1.name} \n Luck: {player1.luck} \n Money: {player1.money} \n Luck Potions: {player1.potions}")
             print(stats)
         elif inp == "4":
             start = "0"
