@@ -27,7 +27,8 @@ auras = {
   'mythical': 0
 }
 
-rarities = ['uncommon', 'rare', 'epic', 'legendary', 'mythical']
+stats = (f"-----User's Stats----- \n Name: {player1.name} \n Luck: {player1.luck} \n Money: {player1.money} \n Luck Potions: {player1.potions}")
+            
 
 def roll():
     global auras
@@ -61,7 +62,7 @@ def inventory():
 def shop():
     global start
     global auras
-    global rarities
+    global stats
     do = ''
     while do != '3':
         print('-----The Sigma Shop-----')
@@ -83,19 +84,20 @@ def shop():
                 else:
                     if sold == 'mythical':
                         player1.money += 50 * quantity
-                        auras[mythical] -= quantity
+                        auras['mythical'] -= quantity
                     elif sold  == 'legendary':
                         player1.money += 20 * quantity
-                        auras[legendary] -= quantity
+                        auras['legendary'] -= quantity
                     elif sold  == 'epic':
                         player1.money += 10 * quantity
-                        auras[epic] -= quantity
+                        auras['epic'] -= quantity
                     elif sold  == 'rare':
                         player1.money += 5 * quantity
-                        auras[rare] -= quantity
+                        auras['rare'] -= quantity
                     elif sold  == 'uncommon':
                         player1.money += 1 * quantity
-                        auras[uncommon] -= quantity
+                        auras['uncommon'] -= quantity
+                    print(stats)
             else:
                 pass
                 
@@ -107,7 +109,8 @@ def shop():
 
 def main():
     global start
-    
+    global stats
+  
     while start == "1":
         inp = input("\n-----Actions----- \n 1 - Roll an aura \n 2 - Check inventory \n 3 - Check stats \n 4 - Shop \n 5 - drink a potion \n 6 - Exit \n")
         if inp == "1":
@@ -115,7 +118,6 @@ def main():
         elif inp == "2":
             inventory()
         elif inp == "3":
-            stats = (f"-----User's Stats----- \n Name: {player1.name} \n Luck: {player1.luck} \n Money: {player1.money} \n Luck Potions: {player1.potions}")
             print(stats)
         elif inp == "4":
             start = "0"
@@ -132,4 +134,5 @@ def main():
         else:
             pass
             
+
 main()
