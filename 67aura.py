@@ -55,7 +55,7 @@ def roll():
 def inventory():
          
     print("-----Your auras----- \n")
-    for aura, amount in auras.item():
+    for aura, amount in auras.items():
       print(f'{aura}, {amount}')
     
 def shop():
@@ -67,37 +67,38 @@ def shop():
         print('-----The Sigma Shop-----')
         do = input('What do you want to do? \n 1 - buy potions \n 2 - sell auras \n 3 - exit the shop \n')
         if do == "1":
-            if player1.money >= 50:
-                player1.money -= 50
-                player1.potions += 1
+            amount = int(input('How many? '))
+            if player1.money >= amount * 50:
+                player1.money -= amount * 50
+                player1.potions += amount
             else:
                 print("You don't have enough money \n")
         elif do == "2":
-            print(auras)
+            inventory()
             sold = input('\nWhich aura are you going to sell?\n')
-            if sold in rarities:
+            if sold in auras:
                 quantity = int(input('\nHow many?\n'))
-                if quantity > sold or sold == 0:
+                if quantity > auras[sold]:
                     print("You don't have that many auras.")
                 else:
                     if sold == 'mythical':
                         player1.money += 50 * quantity
-                        mythical -= 1
+                        auras[mythical] -= quantity
                     elif sold  == 'legendary':
                         player1.money += 20 * quantity
-                        legendary -= 1
+                        auras[legendary] -= quantity
                     elif sold  == 'epic':
                         player1.money += 10 * quantity
-                        epic -= 1
+                        auras[epic] -= quantity
                     elif sold  == 'rare':
                         player1.money += 5 * quantity
-                        rare -= 1
+                        auras[rare] -= quantity
                     elif sold  == 'uncommon':
                         player1.money += 1 * quantity
-                        uncommon -= 1
+                        auras[uncommon] -= quantity
             else:
                 pass
-                print(f"You now have {player1.money} coins.")
+                
         elif do == '3':
             start = "1"
         else:
@@ -131,5 +132,4 @@ def main():
         else:
             pass
             
-
 main()
