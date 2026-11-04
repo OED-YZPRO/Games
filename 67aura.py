@@ -27,7 +27,8 @@ auras = {
   'mythical': 0
 }
 
-stats = (f"-----User's Stats----- \n Name: {player1.name} \n Luck: {player1.luck} \n Money: {player1.money} \n Luck Potions: {player1.potions}")
+def stats():
+  print(f"-----User's Stats----- \n Name: {player1.name}    \n Luck: {player1.luck} \n Money: {player1.money}         \n Luck Potions: {player1.potions}")
             
 
 def roll():
@@ -68,10 +69,11 @@ def shop():
         print('-----The Sigma Shop-----')
         do = input('What do you want to do? \n 1 - buy potions \n 2 - sell auras \n 3 - exit the shop \n')
         if do == "1":
-            amount = int(input('How many? '))
+            amount = int(input('How many?\n '))
             if player1.money >= amount * 50:
                 player1.money -= amount * 50
                 player1.potions += amount
+                stats()
             else:
                 print("You don't have enough money \n")
         elif do == "2":
@@ -80,7 +82,7 @@ def shop():
             if sold in auras:
                 quantity = int(input('\nHow many?\n'))
                 if quantity > auras[sold]:
-                    print("You don't have that many auras.")
+                    print("You don't have that many auras.\n")
                 else:
                     if sold == 'mythical':
                         player1.money += 50 * quantity
@@ -97,7 +99,7 @@ def shop():
                     elif sold  == 'uncommon':
                         player1.money += 1 * quantity
                         auras['uncommon'] -= quantity
-                    print(stats)
+                    stats()
             else:
                 pass
                 
@@ -118,7 +120,7 @@ def main():
         elif inp == "2":
             inventory()
         elif inp == "3":
-            print(stats)
+            stats()
         elif inp == "4":
             start = "0"
             shop()
