@@ -36,19 +36,19 @@ def roll():
     print("You rolled an aura")
     chance = random.randint(player1.luck, 100)
     if chance <= 50:
-        print(f"You got an uncommon aura.")
+        print("You got an uncommon aura.")
         auras['uncommon'] += 1
     elif chance in range(51, 81): 
-        print(f"You got an rare aura.")
+        print("You got an rare aura.")
         auras['rare'] += 1
     elif chance in range(81, 91):
-        print(f"You got an epic aura.")
+        print("You got an epic aura.")
         auras['epic'] += 1
     elif chance in range(91, 95):
-        print(f"You got an legendary aura.")
+        print("You got an legendary aura.")
         auras['legendary'] += 1
     elif chance == 100:
-        print(f"You got an mythical aura.")
+        print("You got an mythical aura.")
         auras['mythical'] += 1
     else:
         print("You got nothing lol")
@@ -63,7 +63,6 @@ def inventory():
 def shop():
     global start
     global auras
-    global stats
     do = ''
     while do != '3':
         print('-----The Sigma Shop-----')
@@ -81,7 +80,7 @@ def shop():
             sold = input('\nWhich aura are you going to sell?\n')
             if sold in auras:
                 quantity = int(input('\nHow many?\n'))
-                if quantity > auras[sold]:
+                if quantity > auras[sold] or quantity <= 0:
                     print("You don't have that many auras.\n")
                 else:
                     if sold == 'mythical':
